@@ -3,6 +3,7 @@
 import urllib
 import json
 import os
+import pyodbc
 
 from flask import Flask
 from flask import request
@@ -33,11 +34,13 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-
+	con=pyodbc.connect("DRIVER={SQL Server};server=LAPTOP-RAJESH\SQLEXPRES;database=IRSeForm;uid=sa;pwd=silvermine")
+	cur=con.cursor()
+	cur.execute("select * from C_Submissions where ref_no='".zone."'")
+	for row in cur:
+		speech row.PK_C_S_key + "," + row.FK_2290F_key
+	cur.close()
+	con.close()
     print("Response:")
     print(speech)
 
