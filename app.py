@@ -34,7 +34,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-	con=pyodbc.connect("DRIVER={SQL Server};server=52.202.54.188;database=IRSeForm;uid=IRSUsr_Analytic;pwd=9_8-eF-2@9-Sm-01")
+	con=pyodbc.connect("DRIVER={FreeTDS};server=52.202.54.188;database=IRSeForm;uid=IRSUsr_Analytic;pwd=9_8-eF-2@9-Sm-01;TDS_VERSION=7.2")
 	cur=con.cursor()
 	cur.execute("select * from C_Submissions where ref_no='".zone."'")
 	for row in cur:
