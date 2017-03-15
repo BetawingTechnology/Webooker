@@ -38,7 +38,7 @@ def makeWebhookResult(req):
 	cur=con.cursor()
 	cur.execute("select * from C_Submissions where ref_no='".zone."'")
 	for row in cur:
-		speech row.PK_C_S_key + "," + row.FK_2290F_key
+		speech =  row.PK_C_S_key + "," + row.FK_2290F_key
 	cur.close()
 	con.close()
     print("Response:")
