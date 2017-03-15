@@ -1,2 +1,3 @@
 Flask==0.10.1
+Django==1.8
 pyodbc==3.0.10
