@@ -1,15 +1,14 @@
-"Proof connection at SQLAlchemy level, on top of pyodbc."
 #!/usr/bin/env python
-# Test SQLAlchemy connection. Result is 42.
-# Note parameters in connection string, <PARAMETER>.
+
 import urllib
 import json
 import os
-from sqlalchemy import create_engine
+import pyodbc
+
 from flask import Flask
 from flask import request
 from flask import make_response
-from sqlalchemy import create_engine
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -35,15 +34,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     zone = parameters.get("shipping-zone")
-	cur = create_engine('mssql+pyodbc:///?odbc_connect=' +
-                    urllib.quote_plus('DRIVER=FreeTDS;SERVER=52.202.54.188;PORT=1433;DATABASE=IRSeForm;UID=IRSUsr_Analytic;PWD=9_8-eF-2@9-Sm-01;TDS_Version=8.0;')
-                    )
-	cur=con.cursor()
-	cur.execute("select * from C_Submissions where ref_no='"zone"'")
-	for row in cur:
-		speech =  row.PK_C_S_key + "," + row.FK_2290F_key
-	cur.close()
-	con.close()
+    
     print("Response:")
     print(speech)
 
