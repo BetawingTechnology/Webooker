@@ -1,4 +1,4 @@
 Flask==0.10.1
 Django==1.8
-freetds==8.0
+bob-builder==0.0.5
 
